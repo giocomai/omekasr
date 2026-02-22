@@ -9,7 +9,8 @@ or_get_item(item_id, base_url = NULL)
 \arguments{
 \item{item_id}{The numeric identifier of an Omeka S item.}
 
-\item{base_url}{Defaults to NULL, typically set for the active session with \code{\link[=or_set]{or_set()}}.}
+\item{base_url}{Defaults to \code{NULL}, typically set for the active session with
+\code{\link[=or_set]{or_set()}}.}
 }
 \value{
 A list object, with everything returned by the API.
