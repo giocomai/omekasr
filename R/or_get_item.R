@@ -12,17 +12,15 @@
 #'   or_get_item(id = 123)
 #' }
 or_get_item <- function(item_id, base_url = NULL) {
-  if (is.null(base_url)) {
-    base_url <- or_set()[["base_url"]]
-  }
+  resp7 <- or_get(id = item_id, type = "items", base_url = base_url)
 
-  req <- httr2::request(base_url) |>
-    httr2::req_url_path_append("items", as.character(item_id))
+  item7 <- omekas_item(
+    data = resp7@data,
+    url = resp7@url,
+    type = resp7@type,
+    retrieved_at = resp7@retrieved_at,
+    id = as.integer(item_id)
+  )
 
-  resp <- req |>
-    httr2::req_perform()
-
-  item_l <- httr2::resp_body_json(resp)
-
-  item_l
+  item7
 }

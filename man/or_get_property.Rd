@@ -20,6 +20,6 @@ Retrieve Omeka S property based on id
 }
 \examples{
 \dontrun{
-  or_get_property(id = 12)
+  or_get_property(property_id = 12)
 }
 }

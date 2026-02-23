@@ -9,20 +9,18 @@
 #'
 #' @examples
 #' \dontrun{
-#'   or_get_property(id = 12)
+#'   or_get_property(property_id = 12)
 #' }
 or_get_property <- function(property_id, base_url = NULL) {
-  if (is.null(base_url)) {
-    base_url <- or_set()[["base_url"]]
-  }
+  resp7 <- or_get(id = property_id, type = "properties", base_url = base_url)
 
-  req <- httr2::request(base_url) |>
-    httr2::req_url_path_append("properties", as.character(property_id))
+  property7 <- omekas_property(
+    data = resp7@data,
+    url = resp7@url,
+    type = resp7@type,
+    retrieved_at = resp7@retrieved_at,
+    id = as.integer(property_id)
+  )
 
-  resp <- req |>
-    httr2::req_perform()
-
-  property_l <- httr2::resp_body_json(resp)
-
-  property_l
+  property7
 }
