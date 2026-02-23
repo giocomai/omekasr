@@ -18,22 +18,13 @@
 or_get <- function(id, type = c("items", "properties"), base_url = NULL) {
   type <- rlang::arg_match(arg = type, values = c("items", "properties"))
 
-  if (is.null(base_url)) {
-    base_url <- or_set()[["base_url"]]
+  check_url_result <- or_check_url(base_url = base_url)
+
+  if (!check_url_result[["valid"]]) {
+    cli::cli_abort(message = check_url_result[["message"]])
   }
 
-  rlang::try_fetch(
-    expr = httr2::url_parse(base_url),
-    error = function(e) {
-      cli::cli_abort(
-        c(
-          "x" = "The provided {.arg base_url} is not a valid url.",
-          "i" = "Provided {.arg base_url}: {.val {base_url}}",
-          "!" = "Ensure a valid {.arg base_url} has been provided, or set with {.fun or_set}."
-        )
-      )
-    }
-  )
+  base_url <- check_url_result[["value"]]
 
   req <- httr2::request(base_url) |>
     httr2::req_url_path_append(type, as.character(id))
