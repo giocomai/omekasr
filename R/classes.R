@@ -14,7 +14,7 @@ omekas_response <- S7::new_class(
     retrieved_at = S7::class_POSIXct
   ),
   validator = function(self) {
-    if (length(type) != 1) {
+    if (length(self@type) != 1) {
       "Only one type - e.g. items, or properties - can be provided."
     }
   }
