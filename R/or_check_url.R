@@ -1,6 +1,10 @@
 #' Checks if the base url given or set for the session can be parsed
 #'
 #' @inheritParams or_set
+#' @param silent Logical, defaults to `FALSE`. If `TRUE`, the function does not
+#'   print informative messages related to this check.
+#' @param error Logical, defaults to `TRUE`. If `TRUE`, the function throws an
+#'   error if this check fails.
 #'
 #' @returns A list with three elements: `valid` (either `TRUE` or `FALSE`),
 #'   `value` (returning `base_url`), and `message` (returning an informative
@@ -13,7 +17,7 @@
 #' or_check_url("wrong_url/api")
 #'
 #' or_check_url("http://127.0.0.0")
-or_check_url <- function(base_url = NULL) {
+or_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
   if (is.null(base_url)) {
     base_url <- or_set()[["base_url"]]
   }
@@ -44,7 +48,13 @@ or_check_url <- function(base_url = NULL) {
     message = message
   )
 
-  cli::cli_inform(check_result[["message"]])
+  if (!silent) {
+    if (error & !(inherits(parsed, "error"))) {
+      cli::cli_abort(check_result[["message"]])
+    } else {
+      cli::cli_inform(check_result[["message"]])
+    }
+  }
 
   invisible(check_result)
 }

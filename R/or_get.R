@@ -18,7 +18,11 @@
 or_get <- function(id, type = c("items", "properties"), base_url = NULL) {
   type <- rlang::arg_match(arg = type, values = c("items", "properties"))
 
-  check_url_result <- or_check_url(base_url = base_url)
+  check_url_result <- or_check_url(
+    base_url = base_url,
+    silent = TRUE,
+    error = TRUE
+  )
 
   if (!check_url_result[["valid"]]) {
     cli::cli_abort(message = check_url_result[["message"]])

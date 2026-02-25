@@ -4,12 +4,18 @@
 \alias{or_check_url}
 \title{Checks if the base url given or set for the session can be parsed}
 \usage{
-or_check_url(base_url = NULL)
+or_check_url(base_url = NULL, silent = FALSE, error = TRUE)
 }
 \arguments{
 \item{base_url}{Endpoint of the API of the Omeka installation, or base url of
 the website. Internally, it is ensured that the "api" suffix is always
 appended to the given url.}
+
+\item{silent}{Logical, defaults to \code{FALSE}. If \code{TRUE}, the function does not
+print informative messages related to this check.}
+
+\item{error}{Logical, defaults to \code{TRUE}. If \code{TRUE}, the function throws an
+error if this check fails.}
 }
 \value{
 A list with three elements: \code{valid} (either \code{TRUE} or \code{FALSE}),
