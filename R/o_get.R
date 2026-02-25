@@ -3,7 +3,7 @@
 #' @param id An Omeka S numeric identifier.
 #' @param type Defaults to "items". Accepted values include "item" and
 #'   "properties".
-#' @inheritParams or_set
+#' @inheritParams o_set
 #'
 #' @returns A list object, with attributes detailing the source url, the type of
 #'   API endpoint called, and the timestamp of data retrieval.
@@ -11,14 +11,14 @@
 #'
 #' @examples
 #' \dontrun{
-#'   or_get(id = 123, type = "items")
-#'   or_get(id = "123", type = "items") # id can be given as character
-#'   or_get(id = 12, type = "properties")
+#'   o_get(id = 123, type = "items")
+#'   o_get(id = "123", type = "items") # id can be given as character
+#'   o_get(id = 12, type = "properties")
 #' }
-or_get <- function(id, type = c("items", "properties"), base_url = NULL) {
+o_get <- function(id, type = c("items", "properties"), base_url = NULL) {
   type <- rlang::arg_match(arg = type, values = c("items", "properties"))
 
-  check_url_result <- or_check_url(
+  check_url_result <- o_check_url(
     base_url = base_url,
     silent = TRUE,
     error = TRUE

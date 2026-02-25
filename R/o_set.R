@@ -9,12 +9,12 @@
 #'
 #' @examples
 #'
-#'or_set(base_url = "https://example.com/api")
+#'o_set(base_url = "https://example.com/api")
 #'
-#'base_url <- or_set()[["base_url"]]
+#'base_url <- o_set()[["base_url"]]
 #'
 #'base_url
-or_set <- function(base_url = NULL) {
+o_set <- function(base_url = NULL) {
   if (is.null(base_url)) {
     base_url <- Sys.getenv("omekasr_base_url")
   } else {

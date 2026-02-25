@@ -1,6 +1,6 @@
 #' Checks if the base url given or set for the session can be parsed
 #'
-#' @inheritParams or_set
+#' @inheritParams o_set
 #' @param silent Logical, defaults to `FALSE`. If `TRUE`, the function does not
 #'   print informative messages related to this check.
 #' @param error Logical, defaults to `TRUE`. If `TRUE`, the function throws an
@@ -14,12 +14,12 @@
 #'
 #' @examples
 #'
-#' or_check_url("wrong_url/api")
+#' o_check_url("wrong_url/api")
 #'
-#' or_check_url("http://127.0.0.0")
-or_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
+#' o_check_url("http://127.0.0.0")
+o_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
   if (is.null(base_url)) {
-    base_url <- or_set()[["base_url"]]
+    base_url <- o_set()[["base_url"]]
   }
 
   parsed <- rlang::try_fetch(
@@ -33,7 +33,7 @@ or_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
     message <- c(
       "x" = "The provided {.arg base_url} is not a valid url.",
       "i" = "Provided {.arg base_url}: {.val {base_url}}",
-      "!" = "Ensure a valid {.arg base_url} has been provided, or set with {.fun or_set}."
+      "!" = "Ensure a valid {.arg base_url} has been provided, or set with {.fun o_set}."
     )
   } else {
     message <- c(
