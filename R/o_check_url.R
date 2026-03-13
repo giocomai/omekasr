@@ -14,7 +14,11 @@
 #'
 #' @examples
 #'
-#' o_check_url("wrong_url/api")
+#' try(
+#'   o_check_url("wrong_url/api")
+#'   )
+#'
+#' o_check_url("wrong_url/api", error = FALSE)
 #'
 #' o_check_url("http://127.0.0.0")
 o_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
@@ -49,7 +53,7 @@ o_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
   )
 
   if (!silent) {
-    if (error & !(inherits(parsed, "error"))) {
+    if (error & (inherits(parsed, "error"))) {
       cli::cli_abort(check_result[["message"]])
     } else {
       cli::cli_inform(check_result[["message"]])

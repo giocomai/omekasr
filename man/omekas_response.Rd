@@ -8,26 +8,19 @@ omekas_response(
   data = list(),
   url = character(0),
   type = character(0),
-  retrieved_at = (function (.data = double(), tz = "") 
- {
-     .POSIXct(.data, tz = tz)
-
-    })()
+  retrieved_at = Sys.time()
 )
+}
+\arguments{
+\item{data}{A list; the parsed json from the API response.}
+
+\item{url}{Full URL from where the response was retrieved.}
+
+\item{type}{The type of contents or resource retrieved from the API, e.g.
+"items", or "properties".}
+
+\item{retrieved_at}{Time when the given resource was retrieved.}
 }
 \description{
 S7 class representing an Omeka S API response
 }
-\section{Slots}{
-
-\describe{
-\item{\code{data}}{A list; the parsed json from the API response.}
-
-\item{\code{url}}{Full URL from where the response was retrieved.}
-
-\item{\code{type}}{The type of contents or resource retrieved from the API, e.g.
-"items", or "properties".}
-
-\item{\code{retrieved_at}}{Time when the given resrouce was retrieved.}
-}}
-

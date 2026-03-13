@@ -1,17 +1,20 @@
 #' S7 class representing an Omeka S API response
 #'
-#' @slot data A list; the parsed json from the API response.
-#' @slot url Full URL from where the response was retrieved.
-#' @slot type The type of contents or resource retrieved from the API, e.g.
+#' @param data A list; the parsed json from the API response.
+#' @param url Full URL from where the response was retrieved.
+#' @param type The type of contents or resource retrieved from the API, e.g.
 #'   "items", or "properties".
-#' @slot retrieved_at Time when the given resrouce was retrieved.
+#' @param retrieved_at Time when the given resource was retrieved.
 omekas_response <- S7::new_class(
   name = "omekas_response",
   properties = list(
     data = S7::class_list,
     url = S7::class_character,
     type = S7::class_character,
-    retrieved_at = S7::class_POSIXct
+    retrieved_at = S7::new_property(
+      class = S7::class_POSIXct,
+      default = quote(Sys.time())
+    )
   ),
   validator = function(self) {
     if (length(self@type) != 1) {
@@ -22,7 +25,9 @@ omekas_response <- S7::new_class(
 
 #' S7 class representing an Omeka S item
 #'
-#' @slot id Numeric, the identifier of the resource requested.
+#' @param id Numeric, the identifier of the resource requested.
+#' @inheritParams omekas_response
+
 omekas_item <- S7::new_class(
   name = "omekas_item",
   parent = omekas_response,
@@ -41,7 +46,8 @@ omekas_item <- S7::new_class(
 
 #' S7 class representing an Omeka S property
 #'
-#' @slot id Numeric, the identifier of the resource requested.
+#' @param id Numeric, the identifier of the resource requested.
+#' @inheritParams omekas_response
 omekas_property <- S7::new_class(
   name = "omekas_property",
   parent = omekas_response,

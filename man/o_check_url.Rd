@@ -8,7 +8,7 @@ o_check_url(base_url = NULL, silent = FALSE, error = TRUE)
 }
 \arguments{
 \item{base_url}{Endpoint of the API of the Omeka installation, or base url of
-the website. Internally, it is ensured that the "api" suffix is always
+the website. Internally, it is ensured that the \code{api} suffix is always
 appended to the given url.}
 
 \item{silent}{Logical, defaults to \code{FALSE}. If \code{TRUE}, the function does not
@@ -28,7 +28,11 @@ Checks if the base url given or set for the session can be parsed
 }
 \examples{
 
-o_check_url("wrong_url/api")
+try(
+  o_check_url("wrong_url/api")
+  )
+
+o_check_url("wrong_url/api", error = FALSE)
 
 o_check_url("http://127.0.0.0")
 }

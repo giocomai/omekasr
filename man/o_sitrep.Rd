@@ -8,7 +8,7 @@ o_sitrep(base_url = NULL)
 }
 \arguments{
 \item{base_url}{Endpoint of the API of the Omeka installation, or base url of
-the website. Internally, it is ensured that the "api" suffix is always
+the website. Internally, it is ensured that the \code{api} suffix is always
 appended to the given url.}
 }
 \value{
