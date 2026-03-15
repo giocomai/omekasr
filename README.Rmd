@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-universe version](https://giocomai.r-universe.dev/omekasr/badges/version)](https://giocomai.r-universe.dev/omekasr)
 <!-- badges: end -->
 
 The goal of `omekasr` is to facilitate interaction with the Omeka S REST API. 
@@ -40,3 +41,22 @@ or from r-universe with:
 ``` r
 install.packages("omekasr", repos = c("https://giocomai.r-universe.dev", "https://cloud.r-project.org"))
 ```
+
+## Introducing `omekasr`
+
+The first thing you do when working with `omekasr` is to set the url of the Omeka S instance you want to work with. Throughout the documentation, a dedicated testing instance will be used for reference; its contents are derived from [Omeka S official sandbox instance](https://dev.omeka.org/omeka-s-sandbox/).
+
+```{r o_set}
+library("omekasr")
+o_set(base_url = "https://omekasr.giorgiocomai.eu/")
+```
+
+Internally, this will check that the given input is a valid URL, and will append `api` as requested by Omeka S. 
+
+```{r current_base_url}
+current_base_url <- o_set() |> 
+  purrr::pluck("base_url")
+
+current_base_url
+```
+
