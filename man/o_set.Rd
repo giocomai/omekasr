@@ -4,12 +4,15 @@
 \alias{o_set}
 \title{Sets settings for the current session.}
 \usage{
-o_set(base_url = NULL)
+o_set(base_url = NULL, error = TRUE)
 }
 \arguments{
 \item{base_url}{Endpoint of the API of the Omeka installation, or base url of
 the website. Internally, it is ensured that the \code{api} suffix is always
 appended to the given url.}
+
+\item{error}{Defaults to \code{TRUE}. Passed to \code{\link[=o_check_url]{o_check_url()}}. If \code{TRUE}, throws
+an error if the url set or retrieved is invalid.}
 }
 \value{
 Invisibly, the settings as a list.
