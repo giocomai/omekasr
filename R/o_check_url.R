@@ -52,12 +52,12 @@ o_check_url <- function(base_url = NULL, silent = FALSE, error = TRUE) {
     message = message
   )
 
+  if (error & (inherits(parsed, "error"))) {
+    cli::cli_abort(check_result[["message"]])
+  }
+
   if (!silent) {
-    if (error & (inherits(parsed, "error"))) {
-      cli::cli_abort(check_result[["message"]])
-    } else {
-      cli::cli_inform(check_result[["message"]])
-    }
+    cli::cli_inform(check_result[["message"]])
   }
 
   invisible(check_result)
