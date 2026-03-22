@@ -32,13 +32,13 @@ o_set <- function(base_url = NULL, error = TRUE) {
     )
   }
 
+  o_check_url(base_url = base_url, silent = TRUE, error = error)
+
   if (!stringr::str_ends(string = base_url, pattern = "/api|/api/")) {
     base_url <- fs::path(base_url, "api")
   } else if (stringr::str_ends(string = base_url, pattern = "/api/")) {
     base_url <- stringr::str_remove(string = base_url, pattern = "/$")
   }
-
-  o_check_url(base_url = base_url, silent = TRUE, error = error)
 
   invisible(list(
     base_url = as.character(base_url)
