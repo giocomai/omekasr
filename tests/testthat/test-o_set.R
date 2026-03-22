@@ -1,6 +1,3 @@
-library("omekasr")
-library("testthat")
-
 test_that("API is appended correctly to the base url", {
   expect_equal(
     o_set("https:/example.com/")[["base_url"]],
