@@ -8,6 +8,14 @@
 \description{
 Interact with the Omeka S API from R.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://codeberg.org/giocomai/omekasr}
+  \item \url{https://giocomai.r-universe.dev/omekasr}
+}
+
+}
 \author{
 \strong{Maintainer}: Giorgio Comai \email{g@giorgiocomai.eu} (\href{https://orcid.org/0000-0002-0515-9542}{ORCID}) [copyright holder]
 
