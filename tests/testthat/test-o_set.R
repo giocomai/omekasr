@@ -24,9 +24,19 @@ test_that("API is appended correctly to the base url", {
 })
 
 
-test_that("An error is thrown is an invalid url is given", {
+test_that("An error is thrown is an invalid url is given or no value set", {
+  Sys.unsetenv("omekasr_base_url")
+
+  expect_error({
+    settings <- o_set(base_url = NULL)
+  })
+
   expect_error({
     settings <- o_set(base_url = "")
+  })
+
+  expect_error({
+    settings <- o_set(base_url = "not_an_url")
   })
 
   expect_no_error({
