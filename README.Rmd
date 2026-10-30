@@ -44,19 +44,55 @@ install.packages("omekasr", repos = c("https://giocomai.r-universe.dev", "https:
 
 ## Introducing `omekasr`
 
-The first thing you do when working with `omekasr` is to set the url of the Omeka S instance you want to work with. Throughout the documentation, a dedicated testing instance will be used for reference; its contents are derived from [Omeka S official sandbox instance](https://dev.omeka.org/omeka-s-sandbox/).
+The first thing you do when working with `omekasr` is to set the url of the Omeka S instance you want to work with. Throughout the documentation, a dedicated testing instance will be used for reference; its contents are derived from the [Omeka S official sandbox instance](https://dev.omeka.org/omeka-s-sandbox/).
+
+Using `o_set()` will set the base url for the current session.
 
 ```{r o_set}
 library("omekasr")
 o_set(base_url = "https://omekasr.giorgiocomai.eu/")
 ```
 
-Internally, this will check that the given input is a valid URL, and will append `api` as requested by Omeka S. 
+Internally, this will check that the given input appears to be a valid URL, and will append `api` as requested by Omeka S. This test can be conducted interactively with `o_check_url()`.
 
-```{r current_base_url}
-current_base_url <- o_set() |> 
-  purrr::pluck("base_url")
 
-current_base_url
+```{r o_check_url}
+o_check_url()
 ```
+
+This only checks that the URL appears to be valid, but does not ensure that an active Omeka S server is responeding at that address.
+
+
+## Retrieve items and properties
+
+It is possible to retrieve an data from any supported endpoint with `o_get()`; at present, only `items` and `properties` are supported
+
+```{r o_get}
+get_response <- o_get(id = 12, type = "items")
+
+```
+
+Main types have also convenience functions that return an `S7` object that actively identifies the response as an Omeka S item.
+
+
+```{r o_get_item}
+item <- o_get_item(item_id = 12)
+
+item
+```
+
+
+```{r item class}
+class(item)
+```
+
+## Troubleshooting
+
+This package features a situation report function, that can be used to troubleshoot most common issues, such as incorrect API base url or lack of internet connection
+
+```{r o_sitrep}
+o_sitrep()
+```
+
+
 

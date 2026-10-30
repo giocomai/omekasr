@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   o_get_item(id = 123)
+#'   o_get_item(item_id = 123)
 #' }
 o_get_item <- function(item_id, base_url = NULL) {
   resp7 <- o_get(id = item_id, type = "items", base_url = base_url)

@@ -21,7 +21,7 @@ test_that("API is appended correctly to the base url", {
 })
 
 
-test_that("An error is thrown is an invalid url is given or no value set", {
+test_that("An error is thrown if an invalid url is given or no value set", {
   Sys.unsetenv("omekasr_base_url")
 
   expect_error({

@@ -12,11 +12,19 @@ the website. Internally, it is ensured that the \code{api} suffix is always
 appended to the given url.}
 }
 \value{
-Nothing, used for its side effects.
+Mostly used for its side effects, return list with check results.
 }
 \description{
 Performs a set of tests for troubleshooting common issues, and provides
 informative message.
+}
+\details{
+More specifically, \code{o_sitrep()} checks:
+
+\itemize{
+\item that the \code{base_url} can be parsed and appears to be a valid
+\item that there is a functioning internet connection
+}
 }
 \examples{
 

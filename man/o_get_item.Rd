@@ -20,6 +20,6 @@ Retrieve Omeka S item based on id
 }
 \examples{
 \dontrun{
-  o_get_item(id = 123)
+  o_get_item(item_id = 123)
 }
 }
