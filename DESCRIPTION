@@ -11,7 +11,6 @@ Description: Interact with the Omeka S API from R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports: 
     cli,
     curl,
@@ -30,3 +29,4 @@ Language: en-US
 Depends: 
     R (>= 4.1.0)
 URL: https://codeberg.org/giocomai/omekasr, https://giocomai.r-universe.dev/omekasr
+Config/roxygen2/version: 8.1.1

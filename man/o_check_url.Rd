@@ -21,7 +21,7 @@ error if this check fails.}
 A list with three elements: \code{valid} (either \code{TRUE} or \code{FALSE}),
 \code{value} (returning \code{base_url}), and \code{message} (returning an informative
 message about the result of the check, typically shown with
-\code{\link[cli:cli_abort]{cli::cli_inform()}}).
+\code{\link[cli:cli_inform]{cli::cli_inform()}}).
 }
 \description{
 Checks if the base url given or set for the session can be parsed
